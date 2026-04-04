@@ -54,7 +54,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-[2rem] border border-border p-8 md:p-12 shadow-xl shadow-primary/5"
+          className="bg-card rounded-[2rem] border border-border p-8 md:p-12 shadow-xl shadow-primary/5"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -6,7 +6,7 @@ export const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <Navbar />
-      <main className="flex-grow flex flex-col relative z-10 w-full">
+      <main className="relative z-10 w-full">
         {/* We use Outlet to render the nested routes */}
         <Outlet />
       </main>

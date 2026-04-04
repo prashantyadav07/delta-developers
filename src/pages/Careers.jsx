@@ -43,7 +43,7 @@ export default function Careers() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="bg-white rounded-[2rem] border border-border p-8 md:p-12 shadow-sm"
+          className="bg-card rounded-[2rem] border border-border p-8 md:p-12 shadow-sm"
         >
           <motion.h2 variants={fadeUpVariants} className="text-2xl font-semibold mb-8 border-b border-border pb-6">
             Open Positions

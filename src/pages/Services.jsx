@@ -41,7 +41,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-white p-8 md:p-12 rounded-3xl border border-border flex flex-col md:flex-row gap-8 items-start group hover:shadow-xl transition-all duration-300"
+              className="bg-card p-8 md:p-12 rounded-3xl border border-border flex flex-col md:flex-row gap-8 items-start group hover:shadow-xl transition-all duration-300"
             >
               <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center shrink-0 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 <service.icon size={32} strokeWidth={1.5} />
