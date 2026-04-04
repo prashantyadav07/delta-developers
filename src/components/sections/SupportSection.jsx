@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function SupportSection() {
   return (
-    <section className="relative min-h-[80vh] flex flex-col items-center justify-center bg-black overflow-hidden px-6 selection:bg-amber-900 selection:text-amber-100 py-32 rounded-3xl my-6 mx-4 md:mx-10 border border-white/10 shadow-2xl">
+    <section className="relative min-h-[80vh] flex flex-col items-center justify-center bg-secondary/50 overflow-hidden px-6 selection:bg-primary/20 selection:text-primary py-32 rounded-3xl my-6 mx-4 md:mx-10 border border-border/50 shadow-xl">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Main Animated Arc */}
@@ -46,12 +46,12 @@ export default function SupportSection() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="space-y-10"
         >
-          <h2 className="text-5xl md:text-7xl font-serif font-medium text-white leading-[1.1] tracking-tight">
+          <h2 className="text-5xl md:text-7xl font-sans font-semibold text-foreground leading-[1.1] tracking-tight">
             24/7 support <br />
-            <span className="italic opacity-90">for your mind</span>
+            <span className="italic opacity-80 text-primary">for your mind</span>
           </h2>
           
-          <p className="text-lg md:text-xl font-sans text-white/70 leading-relaxed max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl font-sans text-muted-foreground leading-relaxed max-w-2xl mx-auto font-light">
             Over 99% of life happens between therapy sessions. 
             Dawn meets you in the moments that matter, with 
             proactive check-ins and real-time responses at any 
@@ -60,9 +60,9 @@ export default function SupportSection() {
         </motion.div>
       </div>
 
-      {/* Bottom Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      {/* Bottom Vignette - Adjusted for light mode */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_100%)] opacity-40 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }

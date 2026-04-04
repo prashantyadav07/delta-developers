@@ -50,7 +50,7 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <NavLink 
               to="/contact" 
-              className="px-5 py-2.5 text-sm font-medium bg-foreground text-background rounded-full hover:bg-primary hover:text-white transition-all shadow-sm"
+              className="px-5 py-2.5 text-sm font-medium bg-foreground text-background rounded-full hover:bg-primary hover:text-background transition-all shadow-sm"
             >
               Start Project
             </NavLink>

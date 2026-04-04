@@ -51,7 +51,7 @@ export default function NotFound() {
         >
           <NavLink 
             to="/" 
-            className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-full font-medium hover:bg-primary hover:text-white transition-all shadow-md"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background rounded-full font-medium hover:bg-primary hover:text-background transition-all shadow-md"
           >
             <Home size={18} /> Return Home
           </NavLink>

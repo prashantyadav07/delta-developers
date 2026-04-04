@@ -23,17 +23,17 @@ const Node = ({ icon: Icon, title, subtitle, position, id }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: isCenter ? 0 : 0.2 }}
-      className={`relative flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm shadow-2xl transition-colors hover:border-white/20 group
+      className={`relative flex items-center gap-4 p-4 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-xl transition-colors hover:border-primary/30 group
         ${isCenter ? 'w-64 h-40 flex-col justify-center text-center' : 'w-64 h-24'}
       `}
     >
       {/* Glow effect */}
       <div className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
       
-      <div className={`relative z-10 flex items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10 group-hover:border-primary/50 transition-colors
+      <div className={`relative z-10 flex items-center justify-center p-3 rounded-xl bg-secondary/50 border border-border/50 group-hover:border-primary/50 transition-colors
         ${isCenter ? 'mb-2' : ''}
       `}>
-        <Icon className={`w-6 h-6 ${isCenter ? 'text-primary' : 'text-white/70'}`} />
+        <Icon className={`w-6 h-6 ${isCenter ? 'text-primary' : 'text-foreground/70'}`} />
         {isCenter && (
             <motion.div
               animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
@@ -44,8 +44,8 @@ const Node = ({ icon: Icon, title, subtitle, position, id }) => {
       </div>
       
       <div className="relative z-10 flex flex-col">
-        <span className="text-sm font-semibold text-white tracking-tight">{title}</span>
-        <span className="text-xs text-white/40 font-medium">{subtitle}</span>
+        <span className="text-sm font-semibold text-foreground tracking-tight">{title}</span>
+        <span className="text-xs text-muted-foreground font-medium">{subtitle}</span>
       </div>
 
       {/* Connection points */}
@@ -157,8 +157,8 @@ export default function AIEngineDataFlow() {
 
   return (
     <section className="bg-background flex items-center justify-center p-4 md:p-12 py-32 overflow-hidden relative w-full">
-      {/* Background radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-primary)_0%,transparent_70%)] opacity-5 pointer-events-none" />
+      {/* Background radial glow - toned down and blue for light mode */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-primary)_0%,transparent_70%)] opacity-10 pointer-events-none" />
       
       <div ref={containerRef} className="relative flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-16 md:gap-24">
         

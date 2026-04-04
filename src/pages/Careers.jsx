@@ -65,7 +65,7 @@ export default function Careers() {
                     <span>{pos.location}</span>
                   </div>
                 </div>
-                <div className="mt-4 sm:mt-0 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-white p-2 text-sm rounded-full">
+                <div className="mt-4 sm:mt-0 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-background p-2 text-sm rounded-full">
                   <ArrowUpRight size={18} />
                 </div>
               </motion.a>

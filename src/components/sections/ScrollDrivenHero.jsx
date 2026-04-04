@@ -173,13 +173,13 @@ const ScrollDrivenHero = ({
       {mountLoader && (
         <div ref={loaderRef} style={{
           position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', backgroundColor: '#080808'
+          alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--background)'
         }}>
-          <p style={{ fontSize: '12px', letterSpacing: '0.4em', color: 'rgba(255,255,255,0.4)', fontVariantNumeric: 'tabular-nums' }}>
+          <p style={{ fontSize: '12px', letterSpacing: '0.4em', color: 'var(--muted-foreground)', fontVariantNumeric: 'tabular-nums' }}>
             {progress}%
           </p>
-          <div style={{ width: '160px', height: '1px', background: 'rgba(255,255,255,0.08)', borderRadius: '999px', overflow: 'hidden', marginTop: '12px' }}>
-            <div style={{ height: '100%', background: 'white', width: `${progress}%`, transition: 'width 0.1s ease' }} />
+          <div style={{ width: '160px', height: '1px', background: 'var(--border)', borderRadius: '999px', overflow: 'hidden', marginTop: '12px' }}>
+            <div style={{ height: '100%', background: 'var(--primary)', width: `${progress}%`, transition: 'width 0.1s ease' }} />
           </div>
         </div>
       )}
@@ -191,7 +191,7 @@ const ScrollDrivenHero = ({
           position: 'relative', 
           width: '100%', 
           height: `${window.innerHeight + scrollPinDistance}px`, 
-          backgroundColor: '#000',
+          backgroundColor: 'var(--background)',
           zIndex: 1
         }}
       >
@@ -225,17 +225,17 @@ const ScrollDrivenHero = ({
           >
             <div style={{
               position: 'absolute', inset: '-60px -100px', zIndex: -1, pointerEvents: 'none',
-              background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse at center, var(--background) 0%, transparent 80%)',
             }} />
             <h1 style={{
               fontFamily: 'var(--font-heading, inherit)', fontSize: 'clamp(40px, 8vw, 92px)', 
-              color: 'white', lineHeight: 0.95, letterSpacing: '-0.05em', marginBottom: '24px', fontWeight: 300
+              color: 'var(--foreground)', lineHeight: 0.95, letterSpacing: '-0.05em', marginBottom: '24px', fontWeight: 300
             }}>
               {companyName}
             </h1>
             <p style={{
-              fontSize: 'clamp(14px, 1.2vw, 17px)', color: 'rgba(255,255,255,0.5)', 
-              letterSpacing: '0.08em', lineHeight: 1.8, fontWeight: 300, textTransform: 'uppercase'
+              fontSize: 'clamp(14px, 1.2vw, 17px)', color: 'var(--primary)', 
+              letterSpacing: '0.08em', lineHeight: 1.8, fontWeight: 500, textTransform: 'uppercase'
             }}>
               {tagline}
             </p>

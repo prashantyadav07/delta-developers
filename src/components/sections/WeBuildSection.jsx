@@ -46,7 +46,7 @@ export default function WeBuildSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-8xl font-black tracking-tighter text-white uppercase leading-[0.9]"
+            className="text-5xl md:text-8xl font-black tracking-tighter text-foreground uppercase leading-[0.9]"
           >
             We Build For
           </motion.h2>
@@ -56,7 +56,7 @@ export default function WeBuildSection() {
               &gt;
             </span>
             <div className="relative flex items-center min-h-[60px] md:min-h-[100px]">
-              <span className="text-4xl md:text-7xl font-black bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent uppercase tracking-tighter w-full">
+              <span className="text-4xl md:text-7xl font-black bg-gradient-to-r from-primary via-indigo-600 to-cyan-600 bg-clip-text text-transparent uppercase tracking-tighter w-full">
                 {displayText}
               </span>
               <motion.span

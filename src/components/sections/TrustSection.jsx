@@ -67,10 +67,10 @@ const StatCard = ({ value, label }) => (
     whileHover={{ y: -5, backgroundColor: "var(--color-card)" }}
     className="p-8 rounded-3xl bg-card border border-border flex flex-col gap-2 min-w-[200px] transition-colors"
   >
-    <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+    <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-primary">
       {value}
     </span>
-    <span className="text-sm text-white/50 font-medium uppercase tracking-wider">{label}</span>
+    <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">{label}</span>
   </motion.div>
 );
 
@@ -90,10 +90,10 @@ export default function TrustSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-5xl md:text-6xl font-semibold tracking-tight text-white leading-tight"
+                className="text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-tight"
               >
                 Trusted by <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-600">
                   Industry Leaders
                 </span>
               </motion.h2>
@@ -103,7 +103,7 @@ export default function TrustSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-lg text-white/60 max-w-xl leading-relaxed"
+                className="text-lg text-muted-foreground max-w-xl leading-relaxed"
               >
                 From startups to Fortune 500 companies, businesses worldwide trust Abhastra Automation to deliver mission-critical AI solutions.
               </motion.p>
