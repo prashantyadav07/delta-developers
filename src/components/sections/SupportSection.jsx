@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function SupportSection() {
   return (
-    <section className="relative min-h-[80vh] flex flex-col items-center justify-center bg-secondary/50 overflow-hidden px-6 selection:bg-primary/20 selection:text-primary py-32 rounded-3xl my-6 mx-4 md:mx-10 border border-border/50 shadow-xl">
+    <section className="relative min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden px-6 selection:bg-primary/20 selection:text-primary py-32">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Main Animated Arc */}
@@ -46,15 +46,15 @@ export default function SupportSection() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="space-y-10"
         >
-          <h2 className="text-5xl md:text-7xl font-sans font-semibold text-foreground leading-[1.1] tracking-tight">
+          <h2 className="text-5xl md:text-6xl font-sans font-bold text-[#0f172a] leading-[1.1] tracking-tight">
             24/7 support <br />
-            <span className="italic opacity-80 text-primary">for your mind</span>
+            <span>for your mind</span>
           </h2>
-          
+
           <p className="text-lg md:text-xl font-sans text-muted-foreground leading-relaxed max-w-2xl mx-auto font-light">
-            Over 99% of life happens between therapy sessions. 
-            Dawn meets you in the moments that matter, with 
-            proactive check-ins and real-time responses at any 
+            Over 99% of life happens between therapy sessions.
+            Dawn meets you in the moments that matter, with
+            proactive check-ins and real-time responses at any
             time of day.
           </p>
         </motion.div>

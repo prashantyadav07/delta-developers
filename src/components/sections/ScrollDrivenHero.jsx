@@ -12,7 +12,7 @@ const ScrollDrivenHero = ({
   framePrefix = "ezgif-frame-",
   frameExtension = "jpg",
   paddingDigits = 3,
-  scrollPinDistance = 4000, 
+  scrollPinDistance = 4000,
   headerEntryProgress = 0.25,
   textEntryStart = 0.30,
   textEntryEnd = 0.60,
@@ -24,8 +24,8 @@ const ScrollDrivenHero = ({
   const [loadedCount, setLoadedCount] = useState(0);
   const [mountLoader, setMountLoader] = useState(true);
 
-  const runwayRef = useRef(null); 
-  const stickyRef = useRef(null); 
+  const runwayRef = useRef(null);
+  const stickyRef = useRef(null);
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const imagesRef = useRef([]);
@@ -39,7 +39,7 @@ const ScrollDrivenHero = ({
     const clampedIndex = Math.max(0, Math.min(jstotalFrames - 1, index));
     const img = imagesRef.current[clampedIndex];
     if (!img || !img.complete) return;
-    
+
     const ctx = ctxRef.current;
     const canvas = canvasRef.current;
     if (!ctx || !canvas) return;
@@ -49,7 +49,7 @@ const ScrollDrivenHero = ({
     const scale = Math.max(window.innerWidth / img.naturalWidth, window.innerHeight / img.naturalHeight);
     const x = (window.innerWidth - img.naturalWidth * scale) / 2;
     const y = (window.innerHeight - img.naturalHeight * scale) / 2;
-    
+
     ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, x, y, img.naturalWidth * scale, img.naturalHeight * scale);
   };
@@ -69,7 +69,7 @@ const ScrollDrivenHero = ({
         if (counter === total) setIsLoaded(true);
       };
       img.onerror = () => {
-        counter++; 
+        counter++;
         setLoadedCount(counter);
         if (counter === total) setIsLoaded(true);
       };
@@ -79,6 +79,20 @@ const ScrollDrivenHero = ({
 
   // Phase 3: GSAP Sticky-Hybrid Sync
   useEffect(() => {
+    // Immediate override to hide navbar as soon as the component enters the tree
+    const styleTag = document.createElement('style');
+    styleTag.id = 'hero-navbar-override';
+    styleTag.innerHTML = `
+      header.hero-active { 
+        opacity: 0 !important; 
+        transform: translateY(-40px) !important; 
+        pointer-events: none !important; 
+        transition: none !important; 
+      }
+    `;
+    document.head.appendChild(styleTag);
+    document.querySelector('header')?.classList.add('hero-active');
+
     if (!isLoaded) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -86,7 +100,7 @@ const ScrollDrivenHero = ({
     const canvas = canvasRef.current;
     const dpr = window.devicePixelRatio || 1;
     ctxRef.current = canvas.getContext('2d', { alpha: false });
-    
+
     // Set buffer size to high-DPI
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
@@ -95,14 +109,14 @@ const ScrollDrivenHero = ({
     canvas.style.height = '100vh';
     // Scale context to draw in "CSS" units
     ctxRef.current.scale(dpr, dpr);
-    
+
     drawFrame(0);
 
     resizeObserverRef.current = new ResizeObserver(() => {
       const dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
-      ctxRef.current.setTransform(dpr, 0, 0, dpr, 0, 0); 
+      ctxRef.current.setTransform(dpr, 0, 0, dpr, 0, 0);
       drawFrame(currentFrameRef.current);
       ScrollTrigger.refresh();
     });
@@ -116,25 +130,37 @@ const ScrollDrivenHero = ({
         onComplete: () => setMountLoader(false)
       });
 
-      const styleTag = document.createElement('style');
-      styleTag.id = 'hero-navbar-override';
-      styleTag.innerHTML = `header.hero-active { opacity: 0 !important; transform: translateY(-40px) !important; pointer-events: none !important; }`;
-      document.head.appendChild(styleTag);
-      document.querySelector('header')?.classList.add('hero-active');
-
       const tl = gsap.timeline({ paused: true });
 
+      // Improved Navbar Toggle Logic (Bidirectional)
       tl.call(() => {
         const header = document.querySelector('header');
-        header?.classList.remove('hero-active');
-        gsap.to('header', { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out' });
+        if (!header) return;
+        
+        const isPastThreshold = tl.progress() >= headerEntryProgress;
+        
+        if (isPastThreshold) {
+          header.classList.remove('hero-active');
+          gsap.to(header, { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            ease: 'power4.out',
+            overwrite: true,
+            clearProps: "pointerEvents"
+          });
+        } else {
+          header.classList.add('hero-active');
+          gsap.to(header, { 
+            opacity: 0, 
+            y: -40, 
+            duration: 0.4, 
+            ease: 'power2.inOut',
+            overwrite: true,
+            onComplete: () => { header.style.pointerEvents = 'none'; }
+          });
+        }
       }, null, headerEntryProgress);
-
-      tl.fromTo('.hero-text-overlay', 
-        { opacity: 0, y: 50 }, 
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 
-        textEntryStart
-      );
 
       stRef.current = ScrollTrigger.create({
         trigger: runwayRef.current,
@@ -156,7 +182,7 @@ const ScrollDrivenHero = ({
     }, runwayRef);
 
     return () => {
-      ctx.revert(); 
+      ctx.revert();
       resizeObserverRef.current?.disconnect();
       const header = document.querySelector('header');
       header?.classList.remove('hero-active');
@@ -165,6 +191,7 @@ const ScrollDrivenHero = ({
       imagesRef.current = [];
     };
   }, [isLoaded, headerEntryProgress, jstotalFrames, scrubValue, textEntryStart]);
+
 
   const progress = Math.round((loadedCount / jstotalFrames) * 100);
 
@@ -184,18 +211,18 @@ const ScrollDrivenHero = ({
         </div>
       )}
 
-      <div 
-        ref={runwayRef} 
+      <div
+        ref={runwayRef}
         className="hero-scroll-runway"
-        style={{ 
-          position: 'relative', 
-          width: '100%', 
-          height: `${window.innerHeight + scrollPinDistance}px`, 
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: `${window.innerHeight + scrollPinDistance}px`,
           backgroundColor: 'var(--background)',
           zIndex: 1
         }}
       >
-        <div 
+        <div
           ref={stickyRef}
           style={{
             position: 'sticky',
@@ -206,40 +233,18 @@ const ScrollDrivenHero = ({
             overflow: 'hidden',
           }}
         >
-          <canvas 
-            ref={canvasRef} 
-            style={{ 
-              display: 'block', 
-              width: '100vw', 
+          <canvas
+            ref={canvasRef}
+            style={{
+              display: 'block',
+              width: '100vw',
               height: '100vh',
               pointerEvents: 'none'
-            }} 
-          />
-          
-          <div
-            className="hero-text-overlay"
-            style={{
-              position: 'absolute', bottom: '15%', left: '50%', transform: 'translateX(-50%)',
-              zIndex: 10, textAlign: 'center', opacity: 0, pointerEvents: 'none', width: '90%', maxWidth: '800px',
             }}
-          >
-            <div style={{
-              position: 'absolute', inset: '-60px -100px', zIndex: -1, pointerEvents: 'none',
-              background: 'radial-gradient(ellipse at center, var(--background) 0%, transparent 80%)',
-            }} />
-            <h1 style={{
-              fontFamily: 'var(--font-heading, inherit)', fontSize: 'clamp(40px, 8vw, 92px)', 
-              color: 'var(--foreground)', lineHeight: 0.95, letterSpacing: '-0.05em', marginBottom: '24px', fontWeight: 300
-            }}>
-              {companyName}
-            </h1>
-            <p style={{
-              fontSize: 'clamp(14px, 1.2vw, 17px)', color: 'var(--primary)', 
-              letterSpacing: '0.08em', lineHeight: 1.8, fontWeight: 500, textTransform: 'uppercase'
-            }}>
-              {tagline}
-            </p>
-          </div>
+          />
+
+          {/* Text overlay removed as requested */}
+
         </div>
       </div>
     </>

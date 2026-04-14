@@ -4,10 +4,14 @@ import { pageVariants, containerVariants, fadeUpVariants } from '../utils/animat
 import { siteConfig } from '../constants/config';
 import { services } from '../constants/services';
 import ScrollDrivenHero from '../components/sections/ScrollDrivenHero';
+import ExpertiseSection from '../components/sections/ExpertiseSection';
 import AIEngineDataFlow from '../components/ui/AIEngineDataFlow';
 import TrustSection from '../components/sections/TrustSection';
 import WeBuildSection from '../components/sections/WeBuildSection';
 import SupportSection from '../components/sections/SupportSection';
+import PlatformSection from '../components/sections/PlatformSection';
+import TrustByLeadersSection from '../components/sections/TrustByLeadersSection';
+import GlobalTrustSection from '../components/sections/GlobalTrustSection';
 
 const ServicesPreview = () => {
   return (
@@ -28,7 +32,7 @@ const ServicesPreview = () => {
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -36,7 +40,7 @@ const ServicesPreview = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {services.slice(0, 3).map((service) => (
-            <motion.div 
+            <motion.div
               key={service.id}
               variants={fadeUpVariants}
               className="group p-8 rounded-3xl bg-secondary/30 border border-transparent hover:border-border hover:bg-card transition-all duration-300 shadow-sm hover:shadow-xl"
@@ -66,11 +70,15 @@ export default function Home() {
         <title>{siteConfig.name} | Premium Frontend Architecture</title>
         <meta name="description" content={siteConfig.description} />
       </Helmet>
-      
+
       <ScrollDrivenHero />
-      <AIEngineDataFlow />
-      <TrustSection />
-      <ServicesPreview />
+      <ExpertiseSection />
+      <PlatformSection />
+      <TrustByLeadersSection />
+      <GlobalTrustSection />
+      {/* <AIEngineDataFlow /> */}
+      {/* <TrustSection /> */}
+      {/* <ServicesPreview /> */}
       <WeBuildSection />
       <SupportSection />
     </motion.div>
